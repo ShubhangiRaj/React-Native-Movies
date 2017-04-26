@@ -28,7 +28,7 @@ export default class MoviesList extends Component {
 
     renderRow(rowData){
         return (
-            <View style={styles.thumb}>
+            <View style={styles.card}>
                 <Image
                     source={{uri:'https://image.tmdb.org/t/p/w500_and_h281_bestv2/'+rowData.poster_path}}
                     resizeMode="cover"
@@ -53,7 +53,9 @@ export default class MoviesList extends Component {
     render() {
         return (
             <View>
-                <Text>Top Movies</Text>
+                <View style={styles.header}>
+                    <Text style={styles.headerTxt}>Now Playing</Text>
+                </View>
                 <ListView
                     dataSource={this.state.moviesData}
                     renderRow={this.renderRow}
@@ -66,20 +68,31 @@ export default class MoviesList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#f2f2f2'
     },
-    thumb: {
-        backgroundColor: '#ffffff',
-        marginBottom: 5,
+    card: {
+        borderWidth: 1,
+        borderColor: '#eee',
+        backgroundColor: '#fff',
+        marginBottom: 10,
         elevation: 1
     },
     img: {
-        height: 300
+        height: 200
     },
     txt: {
         margin: 10,
         fontSize: 16,
         textAlign: 'left'
+    },
+    headerTxt: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 20
+    },
+    header: {
+        borderBottomWidth: 2,
+        borderBottomColor: '#f2f2f2'
     }
 });
 
