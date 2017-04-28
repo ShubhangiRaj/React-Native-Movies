@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 
 // import SearchMovies from '../components/SearchMovies';
-import MainMovieList from '../components/MainMovieList';
+import MainDisplay from '../components/MainDisplay';
 
 export default class App extends Component{
 	render(){
 		return(
 				<View>
-					<MainMovieList/>
+					<MainDisplay/>
 				</View>
 			);
 	}

@@ -6,7 +6,7 @@ import {
     ListView,
     Image,
     Dimensions,
-    TextInput
+    TextInput,
 } from 'react-native';
 
 import DisplayMovieCards from '../components/DisplayMovieCards';

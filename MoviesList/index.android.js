@@ -5,19 +5,32 @@ import {
     Text,
     View,
     ListView,
-    Image
+    Image,
+    Navigator
 } from 'react-native';
 
-import App from './components/App';
+import SearchMovies from './components/SearchMovies';
+import DisplayMovieDetail from './components/DisplayMovieDetail';
 
 export default class MoviesList extends Component {
     render(){
         return(
-                <View>
-                    <App/>
-                </View>
-            )
+            <Navigator 
+                initialRoute = {{name: 'SearchMovies'}}
+                renderScene = {this.renderScene.bind(this)}
+            />
+        );
+    }
+
+    renderScene(route, navigator){
+        if(route.name === 'SearchMovies'){
+            return <SearchMovies navigator = {navigator} {...route.passProps}/>
+        }
+        if (route.name === 'DisplayMovieDetail'){
+            return <DisplayMovieDetail navigator={navigator} {...route.passProps}/>
+        }
     }
 }
 
 AppRegistry.registerComponent('MoviesList', () => MoviesList);
+
