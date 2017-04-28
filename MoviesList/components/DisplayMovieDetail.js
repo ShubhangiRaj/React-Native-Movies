@@ -4,27 +4,33 @@ import {
     Text,
     View,
     ListView,
-    Image
+    Image,
+    Dimensions
 } from 'react-native';
 
 export default class DisplayMovieDetail extends Component{
-	constructor(props) {
-        super(props);
-        this.state = {
-            originalTitle: this.props.originalTitle,
-            overview: this.props.overview
-        };
-    }
 	render(){
 		return(
-			<View>
+			<View style={styles.container}>
 				<Text>
-					Movie title: {this.props.originalTitle}
+					Movie title {this.props.movieDetails.originalTitle}
 				</Text>
 				<Text>
-					Overview: {this.props.overview}
+					Overview {this.props.movieDetails.overview}
 				</Text>
 			</View>
 		);
 	}
 }
+
+const {height, width} = Dimensions.get('screen');
+const styles = StyleSheet.create({
+	container: {
+		borderWidth: 2,
+		margin: 10
+	},
+	input:{
+		width,
+		height: 50
+	}
+});

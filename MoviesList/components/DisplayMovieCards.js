@@ -10,11 +10,11 @@ import {
 export default class DisplayMovieCards extends Component{
 	render(){
 		return(
-				<View>
-					<Text>
+				<View style={styles.container}>
+					<Text style={styles.titleText}>
 						{this.props.originalTitle}
 					</Text>
-					<Text>
+					<Text style={styles.overviewText}>
 						{this.props.overview}
 					</Text>
 				</View>
@@ -22,3 +22,19 @@ export default class DisplayMovieCards extends Component{
 	}
 }
 
+const styles = StyleSheet.create({
+	container:{
+		marginLeft: 30,
+		marginRight: 30,
+        marginBottom:10,
+        textAlign: 'left'
+	},
+	titleText:{
+		fontSize:18
+	},
+	overviewText:{
+		marginTop:5,
+		fontSize:16
+	}
+
+});
