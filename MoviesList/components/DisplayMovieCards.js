@@ -4,20 +4,21 @@ import {
     Text,
     View,
     ListView,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 
 export default class DisplayMovieCards extends Component{
 	render(){
 		return(
-				<View style={styles.container}>
+				<ScrollView style={styles.container}>
 					<Text style={styles.titleText}>
 						{this.props.originalTitle}
 					</Text>
 					<Text style={styles.overviewText}>
 						{this.props.overview}
 					</Text>
-				</View>
+				</ScrollView>
 			);
 	}
 }
