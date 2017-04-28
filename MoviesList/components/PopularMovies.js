@@ -14,7 +14,7 @@ export default class PopularMovies extends Component{
 		return(
 				<View style = {styles.container}>
 					<TouchableHighlight style = {styles.button}>
-						<Text>CLICK to know POPULAR MOVIES</Text>
+						<Text>Coming Soon</Text>
 					</TouchableHighlight>
 				</View>
 			);
@@ -23,11 +23,7 @@ export default class PopularMovies extends Component{
 
 const styles = StyleSheet.create({
 	container: {
-		borderWidth: 2,
-		margin: 10
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
-	button:{
-		borderWidth: 2,
-		backgroundColor: '#ddd'
-	}
 })

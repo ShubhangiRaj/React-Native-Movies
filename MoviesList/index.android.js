@@ -63,7 +63,7 @@ export default class MoviesList extends Component{
                 >
                 <MainMovieList tabLabel="Now Playing" />
                 <NowPlaying tabLabel="Search Movies" />
-                <PopularMovies tabLabel="Right" />
+                <PopularMovies tabLabel="Coming Soon" />
             </ScrollableTabView>;
   }
 }
