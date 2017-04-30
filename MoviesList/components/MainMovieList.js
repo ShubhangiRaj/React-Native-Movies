@@ -7,21 +7,45 @@ import {
     Image,
     Dimensions,
     TextInput,
+    RefreshControl,
+    ToastAndroid,
 } from 'react-native';
 
 import DisplayMovieCards from '../components/DisplayMovieCards';
 
 export default class MainMoviesList extends Component{
+
 	constructor(props){
 		super(props);
 		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		this.state = {
 			moviesData: ds.cloneWithRows([]),
+            refreshing: false,
 		};
 	}
 
 	componentDidMount() {
-        this.fetchMoviesData();
+        this._fetchMoviesData();
+    }
+
+    _onRefresh(){
+        this.setState({refreshing: true});
+        this._fetchMoviesData()
+            .then(() =>{ this.setState({ refreshing: false }) ;} )
+            .then(() =>{ ToastAndroid.show("Refreshed"  , ToastAndroid.LONG ); } )
+        ;
+    }
+
+    _fetchMoviesData() {
+        const url = 'http://api.themoviedb.org/3/movie/now_playing?api_key=466839c4d8544152a58da0ad13d38545';
+        return fetch(url)
+            .then( (response) => response.json() )
+            .then( (jsonData) => {
+                this.setState({
+                    moviesData: this.state.moviesData.cloneWithRows(jsonData.results),
+                });
+            })
+            .catch( error => console.log('Error fetching: ' + error) );
     }
 
     renderRow(rowData){
@@ -36,18 +60,6 @@ export default class MainMoviesList extends Component{
         );
     }
 
-    fetchMoviesData() {
-        const url = 'http://api.themoviedb.org/3/movie/now_playing?api_key=466839c4d8544152a58da0ad13d38545';
-        fetch(url)
-            .then( response => response.json() )
-            .then( jsonData => {
-                this.setState({
-                    moviesData: this.state.moviesData.cloneWithRows(jsonData.results),
-                });
-            })
-            .catch( error => console.log('Error fetching: ' + error) );
-    }
-
 	render(){
 		return(
 			<View style={styles.container}>
@@ -57,6 +69,12 @@ export default class MainMoviesList extends Component{
 							<ListView 
 								dataSource = {this.state.moviesData}
 								renderRow  = {this.renderRow}
+                                refreshControl={
+                                    <RefreshControl
+                                        refreshing={this.state.refreshing}
+                                        onRefresh={this._onRefresh.bind(this)}
+                                  />
+                                }
 							/>
 						</View>
 					</View>

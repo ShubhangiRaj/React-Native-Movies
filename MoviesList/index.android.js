@@ -54,6 +54,9 @@ import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view
 import MainMovieList from './components/MainMovieList';
 import NowPlaying from './components/NowPlaying';
 import PopularMovies from './components/PopularMovies';
+import SearchMovies from './components/SearchMovies';
+
+
 
 export default class MoviesList extends Component{
     render() {
@@ -62,7 +65,7 @@ export default class MoviesList extends Component{
                     renderTabBar={() => <DefaultTabBar />}
                 >
                 <MainMovieList tabLabel="Now Playing" />
-                <NowPlaying tabLabel="Search Movies" />
+                <SearchMovies tabLabel="Search Movies" />
                 <PopularMovies tabLabel="Coming Soon" />
             </ScrollableTabView>;
   }
